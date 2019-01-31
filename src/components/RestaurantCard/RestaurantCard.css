@@ -4,9 +4,12 @@
 
 .restaurant-card
 {
-  padding: 20px 10px;
-  border-bottom: 1px solid gray;
+  padding: 20px 20px;
+  border: 2px solid lightgray;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+  border-radius: 10px;
   display: flex;
+  margin: 16px 10px;
 }
 
 .restaurant-card img{
