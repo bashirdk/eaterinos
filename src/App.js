@@ -1,14 +1,9 @@
 import React, { Component, Suspense } from 'react';
 import './App.css';
 import LoadingGif from './loading.gif'
-//import Navbar from './components/Navbar/Navbar';
-//import Search from './components/Search/Search'
 const Navbar = React.lazy(() => import('./components/Navbar/Navbar'));
 const Search = React.lazy(() => import('./components/Search/Search'));
 const RestaurantCard = React.lazy(() => import('./components/RestaurantCard/RestaurantCard'));
-
-
-
 
 class App extends Component {
 
