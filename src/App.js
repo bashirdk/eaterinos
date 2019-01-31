@@ -1,25 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Search from './components/Search/Search';
 import './App.css';
+import RestaurantCard from './components/RestaurantCard/RestaurantCard';
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.textInput = React.createRef();
+    this.state = {
+      restaurants: [],
+      loading: true,
+    };
+  }
+
+  componentDidMount() {
+    this.performSearch(this.state.query);
+  }
+
+  performSearch = (query) => {
+    fetch(`http://opentable.herokuapp.com/api/restaurants?city=${query}`)
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({
+          restaurants: responseData.restaurants,
+          loading: false
+        });
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+
+    return ( 
+      <div className = "App">
+        <Search onSearch = {this.performSearch} /> 
+        <div> 
+          <RestaurantCard restaurants={this.state.restaurants} />
+        </div> 
       </div>
     );
   }
