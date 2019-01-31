@@ -39,13 +39,13 @@ class App extends Component {
       <div className = "App">
         <Navbar/>
         <div class="outer-container">
-          <div class="container">
-            <Search onSearch = {this.performSearch} /> 
+          <div class="search">
+            <Search onSearch = {this.performSearch} />
+          </div>
             <div> 
               <RestaurantCard restaurants={this.state.restaurants} />
             </div> 
           </div>
-        </div>
       </div>
     );
   }
