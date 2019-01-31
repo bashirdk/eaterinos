@@ -38,8 +38,8 @@ class App extends Component {
     return (       
       <div className = "App">
         <Navbar/>
-        <div class="outer-container">
-          <div class="search">
+        <div className="outer-container">
+          <div className="search">
             <Search onSearch = {this.performSearch} />
           </div>
             <div> 

@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './RestaurantCard.css';
 
 const restaurantPrice = number => {
     var valueToReturn;
-    console.log("The number is: " + number);
     if (number === 1)
     {        
         valueToReturn =  (
@@ -36,18 +35,15 @@ const restaurantPrice = number => {
             </>
         )
     }
-    console.log(valueToReturn);
     return valueToReturn;
-
 }
 
 const RestaurantCard = props =>
-
     <div className="container">
         {props.restaurants.map(restaurant => (
             <div key={restaurant.id} className="restaurant-card">
                 <div>
-                    <img src={restaurant.image_url} />
+                    <img src={restaurant.image_url} alt={'img of ' + restaurant.name} />
                 </div>
                 <div>
                     <span className="restaurant-name">{restaurant.name}</span> 

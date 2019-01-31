@@ -12,7 +12,7 @@ class Search extends Component {
   render() {
       return (
         <div className="container">
-          <div class="form-container">
+          <div className="form-container">
             <form onSubmit={this.handleSubmit}>
               <label> Enter a city </label>
               <input 
