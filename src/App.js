@@ -64,7 +64,7 @@ class App extends Component {
             </Suspense>
           </div>
             <div> 
-            <Suspense fallback={<div className="container"><h2>LOADING...</h2><img src={LoadingGif}/></div> }>
+            <Suspense fallback={<div className="container"><h2>LOADING...</h2><img src={LoadingGif} alt='loading' /></div> }>
             {
               (this.state.results | this.state.restaurants.length === 0) ? 
                 <div className="container"><h2>No results</h2></div> 
