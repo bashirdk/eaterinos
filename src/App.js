@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       restaurants: [],
       loading: true,
+      results: false
     };
   }
 
@@ -20,17 +21,26 @@ class App extends Component {
   }
 
   performSearch = (query) => {
-    fetch(`http://opentable.herokuapp.com/api/restaurants?city=${query}`)
-      .then(response => response.json())
-      .then(responseData => {
-        this.setState({
-          restaurants: responseData.restaurants,
-          loading: false
+    if (query)
+    {  
+      fetch(`http://opentable.herokuapp.com/api/restaurants?city=${query}`)
+        .then(response => response.json())
+        .then(responseData => {
+          this.setState({
+            restaurants: responseData.restaurants,
+            loading: false,
+            results: false
+          });
+        })
+        .catch(error => {
+          console.log('Error fetching and parsing data', error);
         });
+    }
+    else {
+      this.setState({
+        results: true
       })
-      .catch(error => {
-        console.log('Error fetching and parsing data', error);
-      });
+    }
   }
 
   render() {
@@ -43,7 +53,12 @@ class App extends Component {
             <Search onSearch = {this.performSearch} />
           </div>
             <div> 
-              <RestaurantCard restaurants={this.state.restaurants} />
+            {
+              (this.state.results | this.state.restaurants.length === 0) ? 
+                <div className="container"><h2>No results</h2></div> 
+                  : 
+                <RestaurantCard restaurants={this.state.restaurants} />
+            }               
             </div> 
           </div>
       </div>

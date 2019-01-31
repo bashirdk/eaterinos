@@ -14,25 +14,25 @@ const restaurantPrice = number => {
     }
     else if (number === 2 ) {
         valueToReturn =  (
-            <>
-                <span className="dollar dark-dollar">$$</span> 
-                <span className="dollar light-dollar">$$</span>
-            </>
+        <>
+            <span className="dollar dark-dollar">$$</span> 
+            <span className="dollar light-dollar">$$</span>
+        </>
         )
     }
     else if (number === 3 ) {
         valueToReturn =  (
-            <>
-                <span className="dollar dark-dollar">$$$</span> 
-                <span className="dollar light-dollar">$</span>
-            </>
+        <>
+            <span className="dollar dark-dollar">$$$</span> 
+            <span className="dollar light-dollar">$</span>
+        </>
         )
     }
     else if (number === 4 ) {
         valueToReturn =  (
-            <>
-                <span className="dollar dark-dollar">$$$$</span> 
-            </>
+        <>
+            <span className="dollar dark-dollar">$$$$</span> 
+        </>
         )
     }
     return valueToReturn;

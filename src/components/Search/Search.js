@@ -21,14 +21,12 @@ class Search extends Component {
                 ref={(input) => this.query = input}
                 placeholder="Location..."
               />
-              <button type="submit" id="submit">Search</button>
+              <button type="submit" id="submit"  >Search</button>
             </form>
           </div>
         </div>
       );
-    }
-
-  
+    } 
 }
 
 export default Search;
