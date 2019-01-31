@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Search from './components/Search/Search';
 import './App.css';
 import RestaurantCard from './components/RestaurantCard/RestaurantCard';
+import Navbar from './components/Navbar/Navbar';
 
 class App extends Component {
 
@@ -34,12 +35,17 @@ class App extends Component {
 
   render() {
 
-    return ( 
+    return (       
       <div className = "App">
-        <Search onSearch = {this.performSearch} /> 
-        <div> 
-          <RestaurantCard restaurants={this.state.restaurants} />
-        </div> 
+        <Navbar/>
+        <div class="outer-container">
+          <div class="container">
+            <Search onSearch = {this.performSearch} /> 
+            <div> 
+              <RestaurantCard restaurants={this.state.restaurants} />
+            </div> 
+          </div>
+        </div>
       </div>
     );
   }
