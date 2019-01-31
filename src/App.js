@@ -1,5 +1,6 @@
 import React, { Component, Suspense } from 'react';
 import './App.css';
+import LoadingGif from './loading.gif'
 //import Navbar from './components/Navbar/Navbar';
 //import Search from './components/Search/Search'
 const Navbar = React.lazy(() => import('./components/Navbar/Navbar'));
@@ -63,7 +64,7 @@ class App extends Component {
             </Suspense>
           </div>
             <div> 
-            <Suspense fallback={<div className="container"><h2>LOADING...</h2></div> }>
+            <Suspense fallback={<div className="container"><h2>LOADING...</h2><img src={LoadingGif}/></div> }>
             {
               (this.state.results | this.state.restaurants.length === 0) ? 
                 <div className="container"><h2>No results</h2></div> 
