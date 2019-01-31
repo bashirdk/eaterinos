@@ -16,6 +16,26 @@
 
 .restaurant-name {
   display: block;
-  font-size: 150%;
+  font-size: 30px;
   margin-bottom: 10px;
+}
+.city-name {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.address-name {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 6px; 
+}
+
+.dollar {
+  font-size: 50px;
+}
+.dark-dollar {
+  color: darkgreen;
+}
+.light-dollar {
+  color: lightgray;
 }
