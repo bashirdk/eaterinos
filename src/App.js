@@ -24,7 +24,7 @@ class App extends Component {
   performSearch = (query) => {
     if (query)
     {  
-      fetch(`http://opentable.herokuapp.com/api/restaurants?city=${query}`)
+      fetch(`https://opentable.herokuapp.com/api/restaurants?city=${query}`)
         .then(response => response.json())
         .then(responseData => {
           this.setState({
