@@ -11,16 +11,20 @@ class Search extends Component {
 
   render() {
       return (
-        <form onSubmit={this.handleSubmit}>
-          <label> Search for a city </label>
-          <input 
-            type="search"
-            name="search"
-            ref={(input) => this.query = input}
-            placeholder="Location..."
-          />
-          <button type="submit" id="submit">Search</button>
-        </form>
+        <div className="container">
+          <div class="form-container">
+            <form onSubmit={this.handleSubmit}>
+              <label> Enter a city </label>
+              <input 
+                type="search"
+                name="search"
+                ref={(input) => this.query = input}
+                placeholder="Location..."
+              />
+              <button type="submit" id="submit">Search</button>
+            </form>
+          </div>
+        </div>
       );
     }
 
