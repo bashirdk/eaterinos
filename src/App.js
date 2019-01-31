@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
-import Search from './components/Search/Search';
+import React, { Component, Suspense } from 'react';
 import './App.css';
-import RestaurantCard from './components/RestaurantCard/RestaurantCard';
-import Navbar from './components/Navbar/Navbar';
+//import Navbar from './components/Navbar/Navbar';
+//import Search from './components/Search/Search'
+const Navbar = React.lazy(() => import('./components/Navbar/Navbar'));
+const Search = React.lazy(() => import('./components/Search/Search'));
+const RestaurantCard = React.lazy(() => import('./components/RestaurantCard/RestaurantCard'));
+
+
+
 
 class App extends Component {
 
@@ -47,20 +52,28 @@ class App extends Component {
 
     return (       
       <div className = "App">
+        
+        <Suspense fallback={<div className="container"><h2>LOADING...</h2></div> }>
         <Navbar/>
+        </Suspense>
         <div className="outer-container">
           <div className="search">
+            <Suspense fallback={<div className="container"><h2>LOADING...</h2></div> }>
             <Search onSearch = {this.performSearch} />
+            </Suspense>
           </div>
             <div> 
+            <Suspense fallback={<div className="container"><h2>LOADING...</h2></div> }>
             {
               (this.state.results | this.state.restaurants.length === 0) ? 
                 <div className="container"><h2>No results</h2></div> 
                   : 
                 <RestaurantCard restaurants={this.state.restaurants} />
-            }               
+            }      
+            </Suspense>         
             </div> 
           </div>
+          
       </div>
     );
   }
