@@ -11,9 +11,7 @@ export class AppService {
     query = (query == null) ? null : query.trim();
     if (query) {  
       try {
-        let responseData = (await 
-          (await fetch(`https://opentable.herokuapp.com/api/restaurants?city=${query}`)).json()
-        );
+        let responseData = (await fetch(`https://opentable.herokuapp.com/api/restaurants?city=${query}`).then(response => response.json()));
         return {
           restaurants: responseData.restaurants,
           loading: false,
@@ -42,14 +40,14 @@ class App extends Component {
     this.state = {
       restaurants: [],
       loading: true,
-      no_results: false,      
+      no_results: true,      
       query: ''
     };
   }
   
-  performSearch = (query) => {
+  performSearch = async (query) => {
     this._onready = false;
-    this.setState(AppService.queryRestaurants(query));
+    this.setState(await AppService.queryRestaurants(query));
   }
 
   render() {
@@ -69,14 +67,11 @@ class App extends Component {
             }>
               { this._onready ? 
                   <div ></div> : 
-                  (this.state.no_results | this.state.restaurants.length === 0) ? 
-                    <div className="container"><h2>No results</h2></div> : 
-                    <RestaurantCard restaurants={this.state.restaurants} query={this.state.query} />
+                    <RestaurantCard details={this.state}/>
               }
             </Suspense>
           </div> 
-        </div>
-          
+        </div>          
       </div>
     );
   }

@@ -14,22 +14,30 @@ const restaurantPrice = number => {
     );
 }
 
-const RestaurantCard = props =>
-    <div className="container">
-        Showing results for "{props.query}"
-        {props.restaurants.map(restaurant => (
-            <div key={restaurant.id} className="restaurant-card">
-                <div>
-                    <img src={restaurant.image_url} alt={'img of ' + restaurant.name} />
-                </div>
-                <div>
-                    <span className="restaurant-name">{restaurant.name}</span> 
-                    <span className="city-name"><b>City:</b> {restaurant.city} </span>
-                    <span className="address-name"><b>Address:</b> {restaurant.address} </span>
-                    <span className="price"> { restaurantPrice(restaurant.price) } </span>
-                </div>                
+const RestaurantCard = props => {
+    return <div className="container">
+        {  (props.details.no_results | props.details.restaurants.length === 0) ? 
+            <div className="container"><h2>No results</h2></div> : 
+            <div>
+                <h2>Showing results for "{props.details.query}" </h2>
+                {
+                    props.details.restaurants.map(restaurant => (
+                    <div key={restaurant.id} className="restaurant-card"> 
+                        <div>
+                            <img src={restaurant.image_url} alt={'img of ' + restaurant.name} />
+                        </div>
+                        <div>
+                            <span className="restaurant-name">{restaurant.name}</span> 
+                            <span className="city-name"><b>City:</b> {restaurant.city} </span>
+                            <span className="address-name"><b>Address:</b> {restaurant.address} </span>
+                            <span className="price"> { restaurantPrice(restaurant.price) } </span>
+                        </div>                
+                    </div>
+                ))
+                }
             </div>
-        ))}
+        }
     </div>;
+}
 
 export default RestaurantCard;
