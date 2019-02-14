@@ -13,7 +13,6 @@
 }
 
 form {
-  background-color: white;
   border-radius: 5px;
   text-align: center;
 }
@@ -23,13 +22,15 @@ form {
   display: inline-block;
   border-radius: 5px;
   padding: 5px 10px;
-  background-color: white;
+  color: white;
 }
 
 input {
   margin-top: -5px;
-  padding: 7px 5px;
+  padding: 9px 15px;
   border: 0;
+  width: 50%;
+  border-radius: 5px 0 0 5px;
 }
 
 button {
@@ -38,6 +39,7 @@ button {
   color: white;
   padding: 9px 20px;
   border: 1px solid darkred;
+  border-radius: 0 5px 5px 0;
   transition: 0.35s ease;
   font-weight: 700;
 }

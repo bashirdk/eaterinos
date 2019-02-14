@@ -2,44 +2,21 @@ import React from 'react';
 import './RestaurantCard.css';
 
 const restaurantPrice = number => {
-    var valueToReturn;
-    if (number === 1)
-    {        
-        valueToReturn =  (
+    let dollar_state = { 
+        dark: number === 1 ? '$' : number === 2 ? '$$' : number === 3 ? '$$$' : '$$$$',
+        light: number === 1 ? '$$$' : number === 2 ? '$$' : number === 3 ? '$' : ''
+    };
+    return (
         <>
-            <span className="dollar dark-dollar">$</span> 
-            <span className="dollar light-dollar">$$$</span> 
+            <span className="dollar dark-dollar">{dollar_state.dark}</span> 
+            <span className="dollar light-dollar">{dollar_state.light}</span> 
         </>
-        )        
-    }
-    else if (number === 2 ) {
-        valueToReturn =  (
-        <>
-            <span className="dollar dark-dollar">$$</span> 
-            <span className="dollar light-dollar">$$</span>
-        </>
-        )
-    }
-    else if (number === 3 ) {
-        valueToReturn =  (
-        <>
-            <span className="dollar dark-dollar">$$$</span> 
-            <span className="dollar light-dollar">$</span>
-        </>
-        )
-    }
-    else if (number === 4 ) {
-        valueToReturn =  (
-        <>
-            <span className="dollar dark-dollar">$$$$</span> 
-        </>
-        )
-    }
-    return valueToReturn;
+    );
 }
 
 const RestaurantCard = props =>
     <div className="container">
+        Showing results for "{props.query}"
         {props.restaurants.map(restaurant => (
             <div key={restaurant.id} className="restaurant-card">
                 <div>

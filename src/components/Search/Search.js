@@ -14,12 +14,11 @@ class Search extends Component {
         <div className="container">
           <div className="form-container">
             <form onSubmit={this.handleSubmit}>
-              <label> Enter a city </label>
               <input 
                 type="search"
                 name="search"
                 ref={(input) => this.query = input}
-                placeholder="Location..."
+                placeholder="Enter a city..."
               />
               <button type="submit" id="submit"  >Search</button>
             </form>
