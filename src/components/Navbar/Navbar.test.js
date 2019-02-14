@@ -1,9 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { expect } from 'chai';
+import { shallow } from 'enzyme';
 import Navbar from './Navbar';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Navbar />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+describe('<Navbar />', () => {
+  it('should have eaterinos text', () => {
+    const wrapper = shallow(<Navbar />);
+    expect(wrapper.find('.navBar nav div').text()).to.contain('Eaterinos');
+  });
+})

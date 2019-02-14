@@ -6,6 +6,32 @@ import Navbar from './components/Navbar/Navbar';
 import Search from './components/Search/Search';
 const RestaurantCard = React.lazy(() => import('./components/RestaurantCard/RestaurantCard'));
 
+export class AppService {
+  static queryRestaurants = async (query) => {
+    query = (query == null) ? null : query.trim();
+    if (query) {  
+      try {
+        let responseData = (await 
+          (await fetch(`https://opentable.herokuapp.com/api/restaurants?city=${query}`)).json()
+        );
+        return {
+          restaurants: responseData.restaurants,
+          loading: false,
+          no_results: false, 
+          query: query 
+        };
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    else {
+      return {
+        no_results: true,
+      }
+    }
+  }
+}
+
 class App extends Component {
 
   //initialize variable to determine first onload
@@ -16,33 +42,14 @@ class App extends Component {
     this.state = {
       restaurants: [],
       loading: true,
-      results: false,      
+      no_results: false,      
       query: ''
     };
   }
   
-  performSearch = async (query) => {
+  performSearch = (query) => {
     this._onready = false;
-    if (query) {  
-      try {
-        let responseData = (await 
-          (await fetch(`https://opentable.herokuapp.com/api/restaurants?city=${query}`)).json()
-        );
-        this.setState({
-          restaurants: responseData.restaurants,
-          loading: false,
-          results: false, 
-          query: query 
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    }
-    else {
-      this.setState({
-        results: true,
-      });
-    }
+    this.setState(AppService.queryRestaurants(query));
   }
 
   render() {
@@ -62,7 +69,7 @@ class App extends Component {
             }>
               { this._onready ? 
                   <div ></div> : 
-                  (this.state.results | this.state.restaurants.length === 0) ? 
+                  (this.state.no_results | this.state.restaurants.length === 0) ? 
                     <div className="container"><h2>No results</h2></div> : 
                     <RestaurantCard restaurants={this.state.restaurants} query={this.state.query} />
               }
